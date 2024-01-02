@@ -1,14 +1,17 @@
 /**
-    Filename   : matrixCalculator.cc
-    Authors    : Ganga Acharya, Adam Glick-Lynch, Sovannary Sok, Skyfa inthavong
-    Description: A calculator which can do matrix algebra including:
-                addition
-                subtraction
-                scalar multiplication
-                matrix multiplication
-                inverting a matrix
-                guassian elimination
-*/
+ * @file matrixCalculator.cc
+ * @brief Matrix Calculator for basic matrix operations
+ * 
+ * This calculator performs various matrix operations such as:
+ * - Addition
+ * - Subtraction
+ * - Scalar Multiplication
+ * - Matrix Multiplication
+ * - Matrix Inversion
+ * - Gaussian Elimination
+ * 
+ * @authors Ganga Acharya, Adam Glick-Lynch, Sovannary Sok, Skyfa Inthavong
+ */
 
 #include <iomanip>
 #include <iostream>
@@ -57,6 +60,9 @@ vector<vector<double>>
 inverse(vector<vector<double>>& a);
 
 //////////////////////////////////////////////////////////////////
+/**
+ * Entry point of the application.
+ */
 int
 main ()
 {
@@ -65,12 +71,14 @@ main ()
 
     cout << "Welcome to our Matrix Calculator!\n";
     cout << "Start by creating the matrices.\n\n";
-
+    
+    // Main loop
     while (true)
     {
         cout << "Press 'c' to enter matrices, 'd' to perform operations, or 'e' to "
                 "exit: ";
         cin >> userInput;
+        // add a check to validate user input
         cout << "\n";
 
         switch (userInput)
@@ -112,19 +120,21 @@ main ()
                 double scalar;
                 vector<vector<double>> result;
 
-                try{
+                try {
                     switch (operation) {
                         case 'x':
                             cout << "Select the matrix to perform a scalar multiply on (e.g., '1'): ";
                             cin >> matrixIndex;
                             cout << "\nEnter a number to multiply by: ";
                             cin >> scalar;
+                            // add check for incorrect input
                             result = scalarMultiply(allMatrices[matrixIndex - 1], scalar);
                             displayMatrix(result);
                             break;
                         case 'a':
                             cout << "Select the matrices to perform addition on (e.g., '1 2'): ";
                             cin >> matrix1Index >> matrix2Index;
+                            // add check for incorrect input
                             result = matrixAdd(allMatrices[matrix1Index - 1], allMatrices[matrix2Index - 1]);
                             cout << "Result of addition:\n\n";
                             displayMatrix(result);
@@ -132,6 +142,7 @@ main ()
                         case 's':
                             cout << "Select the matrices to perform a subtraction on (e.g., '1 2'): ";
                             cin >> matrix1Index >> matrix2Index;
+                            // add check for incorrect input
                             result = matrixSubtract(allMatrices[matrix1Index - 1], allMatrices[matrix2Index - 1]);
                             cout << "Result of subtraction:\n\n";
                             displayMatrix(result);
@@ -139,6 +150,7 @@ main ()
                         case 'm':
                             cout << "Select the matrices to perform a matrix multiply on (e.g., '1 2'): ";
                             cin >> matrix1Index >> matrix2Index;
+                            // add check for incorrect input
                             result = matrixMultiply(allMatrices[matrix1Index - 1], allMatrices[matrix2Index - 1]);
                             cout << "Result of multiplication:\n\n";
                             displayMatrix(result);
@@ -146,6 +158,7 @@ main ()
                         case 'g':
                             cout << "Select the matrix for Gauss-Jordan elimination (e.g., '1'): ";
                             cin >> matrixIndex;
+                            // add check for incorrect input
                             result = gaussJordanElimination(allMatrices[matrixIndex - 1]);
                             cout << "Result of Gauss-Jordan Elimination:\n\n";
                             displayMatrix(result);
@@ -153,6 +166,7 @@ main ()
                         case 'i':
                             cout << "Select the matrix for inverse (e.g., '1'): ";
                             cin >> matrixIndex;
+                            // add check for incorrect input
                             result = inverse(allMatrices[matrixIndex - 1]);
                             cout << "Result of Inverse:\n\n";
                             displayMatrix(result);
